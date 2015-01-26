@@ -1,0 +1,6 @@
+<% query = backupDatabase %>
+<% if query.length > 0 %>
+	<div id='request-response' class="success" data-response='<%= query[0]["response"] %>' data-duration = '<%= query[0]["duration"] %>'/>
+<% else  %>
+	<div id='request-response' class="error" data-response='<%= query[0]["response"] %>' data-duration = '<%= query[0]["duration"] %>'/>
+<% end %>

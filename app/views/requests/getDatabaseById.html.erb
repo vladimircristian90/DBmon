@@ -1,0 +1,3 @@
+<% getDatabaseById.each do|row| %>
+	<span data-db-id='<%= row["database_id"]%>' data-db-name = '<%= row["name"]%>'><%= row["name"]%></span>
+<% end %>

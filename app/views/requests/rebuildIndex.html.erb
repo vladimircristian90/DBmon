@@ -1,0 +1,6 @@
+<% query = rebuildIndex %>
+<% if query.length > 0 %>
+	<div id='request-response' class="success" data-db='<%= query[0]["database"] %>' data-schema='<%= query[0]["schema"] %>' data-table='<%= query[0]["table"] %>' data-index='<%= query[0]["index"] %>' data-response='<%= query[0]["response"] %>' data-guid='<%= query[0]["guid"] %>' data-seconds='<%= query[0]["seconds"] %>'/>
+<% else  %>
+	<div id='request-response' class="error"  data-db='<%= query[0]["database"] %>' data-schema='<%= query[0]["schema"] %>' data-table='<%= query[0]["table"] %>' data-index='<%= query[0]["index"] %>' data-response='<%= query[0]["response"] %>' data-guid='<%= query[0]["guid"] %>' data-seconds='<%= query[0]["seconds"] %>'/>
+<% end %>

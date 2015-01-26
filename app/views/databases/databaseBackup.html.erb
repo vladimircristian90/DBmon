@@ -1,0 +1,51 @@
+<div class="modal fade" id="backup-database-modal" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Backup</h4>
+          </div>
+          <div class="modal-body">
+            <table class="db-list table-hover">
+
+            </table>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default close-backup-database-modal disabled" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<div class="backup-form-row col-lg-12 pull-left">
+        <label for="databaseId" class="col-lg-12 control-label">Select Database</label>
+        <div class="col-lg-6">
+            <%= select_tag 'databaseId',"<option value='-1'>&lt;ALL&gt;</option>".html_safe +  options_for_select( getDatabasesOnline.keep_if{|u| u['name'] != 'tempdb'}.collect{ |u| [u['name'], u['database_id']]}, case params["databaseId"] when nil then -1 else params["databaseId"] end ), :class=>"form-control database-select" %>
+        </div>
+</div>
+<!--<div class="backup-form-row col-lg-12 pull-left">
+        <label for="folderName" class="col-lg-12 control-label">Backup Folder</label>
+        <div class="col-lg-6">
+            <%= text_field_tag 'folderName', "" %>
+            <span>(Leave blank to backup to selected path)</span>
+        </div>
+</div>-->
+<div  class="backup-form-row col-lg-12 pull-left">
+	<label f class="col-lg-12 control-label">Select Destination</label>
+	<div class="col-lg-12 direcotry-tree-wrapper">
+		<%= render :file => 'requests/getDrives.html.erb' %>
+	</div>
+</div>
+<div class="note backup-form-row col-lg-12 pull-left">
+	<div class="alert alert-info col-lg-6">*NOTE: backupname will be DBNAME_YYYYMMDDhhmmssmmm.bak</div>
+</div>
+<div class="bak-error-messages backup-form-row pull-left col-lg-12">
+  <div class="alert alert-danger col-lg-6" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Please select a destination.
+  </div>
+</div>
+<div class="bak-btn actions pull-left col-lg-5">
+    <button type="button" class="btn btn-primary" id="backup-databases">Start backup</button>
+</div>

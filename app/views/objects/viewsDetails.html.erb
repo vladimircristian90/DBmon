@@ -1,0 +1,99 @@
+<div class="clearfix page-top">
+    <h3 class="pull-left">Views Details</h3>
+    <div class="col-lg-4 pull-right">
+        <label for="databaseId" class="col-lg-2 control-label">Select Database</label>
+        <div class="col-lg-10">
+            <%= select_tag 'databaseId',"<option value='-1'>&lt;ALL&gt;</option>".html_safe +  options_for_select( getDatabasesOnline.collect{ |u| [u['name'], u['database_id']] }, case params["databaseId"] when nil then -1 else params["databaseId"] end), :class=>"form-control database-select", :onchange => ("$('#mainForm').submit()") %>
+        </div>
+    </div>
+</div>
+<% query = getViewsDetails %>
+<% rowsInPage = $defaultRowsInPage %>
+<% pageNumber = params["pageNumber"].nil? ? $defaultFirstPage : params["pageNumber"] %>
+<% maxPages = (query.length.to_f / rowsInPage.to_f).ceil %>
+<% if query.length > 0 %>
+    <% colNames = query[0].keys  %>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover ">
+        <tbody><tr>
+        	<% colNames.each do |col| %> 
+        		<th><%= col %></th>
+        	<%end%>
+        </tr>
+        <% query = query.paginate(:page => pageNumber, :per_page => rowsInPage) %>
+        <% query.each do |row| %>
+        	<% flag = '' %>
+        	<% if row["TotalSpaceMB"].to_f < 1000 && row["TotalSpaceMB"].to_f >= 500 %>
+        		<% flag = 'warning' %>
+        	<% elsif row["TotalSpaceMB"].to_f >= 1000 %>
+        		<% flag = 'danger' %>
+        	<% end %>
+        	<tr class='<%= flag.length > 0 ? "#{flag}" : "" %>' >
+        		<% colNames.each do |col| %> 
+    	    		<td><%= row["#{col}"].to_s %></td>
+    	    	<%end%>
+        	</tr>
+        <% end %>
+      </tbody></table>
+    </div>
+    <% if maxPages > 1 %>
+        <div class="text-center">
+            <ul class="pagination pagination-sm" data-min-page="1" data-max-page='<%= maxPages %>'>
+                <li class='pagination-arrow left <%= pageNumber.to_i == $defaultFirstPage ? "disabled" : "" %>'><a href="#">&lt;&lt;</a></li>
+                <li class='pagination-arrow prev <%= pageNumber.to_i == $defaultFirstPage ? "disabled" : "" %>'><a href="#">&lt;</a></li>
+                <% dots = [false,false] %>
+                <% for i in 1..maxPages %>
+                     <% if i <= $defaultMinPages && i < maxPages%>
+                        <% if i == pageNumber.to_i %>
+                            <li class="active"><a href="#"><%= i %></a></li>
+                        <% else %>
+                            <li><a href="#"><%= i %></a></li>
+                        <% end %>
+                    <% end %>
+                    <% if i > $defaultMinPages && i < maxPages.to_i &&  i < pageNumber.to_i %>
+                        <% if i + 1 == pageNumber.to_i %>
+                             <li><a href="#"><%= i %></a></li>
+                        <% else %>
+                            <% if !dots[0] %><li><span>...</span></li>
+                            <% dots[0] = true %>
+                            <% end %>
+                        <% end %>
+                    <% end%>
+
+                    <% if i > $defaultMinPages && i < maxPages.to_i &&  i == pageNumber.to_i %>
+                         <li class="active"><a href="#"><%= i %></a></li>
+                    <% end%>
+
+                    <% if i > $defaultMinPages && i < maxPages.to_i &&  i > pageNumber.to_i && !dots[1] %>
+                        <% if i - 1 == pageNumber.to_i %>
+                             <li><a href="#"><%= i %></a></li>
+                        <% else %>
+                            <li><span>...</span></li>
+                            <% dots[1] = true %>
+                        <% end %>
+                    <% end%>
+                    <% if i == maxPages %>
+                        <% if i == pageNumber.to_i %>
+                            <li class="active"><a href="#"><%= i %></a></li>
+                        <% else %>
+                            <li><a href="#"><%= i %></a></li>
+                        <% end %>
+                    <% end %>
+                <% end %>
+                <li class='pagination-arrow next <%= pageNumber.to_i == maxPages.to_i ? "disabled" : "" %>'><a href="#">&gt;</a></li>
+                <li class='pagination-arrow right <%= pageNumber.to_i == maxPages.to_i ? "disabled" : ""%>'><a href="#">&gt;&gt;</a></li>
+            </ul>
+        </div>
+    <% end %>
+<% else %>
+    <div class="alert alert-info">
+        <strong>Oups!</strong> No user tables found on
+            <%= case params["databaseId"] 
+                 when nil then '<strong>ANY database</strong>.'.html_safe 
+                 when '<ALL>' then '<strong>ANY database<strong>.'.html_safe
+                 else ('database <strong>'+ getDatabaseById[0]['name'] +'</strong>.').html_safe
+             end %>
+    </div>
+<% end %>
+
+			

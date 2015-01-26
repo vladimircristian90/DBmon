@@ -1,0 +1,13 @@
+<%= getDirTree %>
+<% if getDirTree.empty? %>
+	<div id="no-subdirs" ></div>
+<% else %>
+	<% getDirTree.each do |row| %>
+		<tr data-tt-id="<%= row['guid'] %>" data-tt-parent-id="<%= row['parent_id'] %>" data-expanded="0" class="leaf collapsed" data-level='<%= row["level"] %>' data-empty="0">
+			<td data-dir='<%= row["path"] %>'>
+				<span class='<%= row["isfile"] == 0 ? "indenter" : "" %>' style='padding-left:<%= row["level"] * 19 %>px' ><a href="#" title="Expand">&nbsp;</a></span>
+				<span class='<%= row["isfile"] == 1 ? "file" : "folder" %>'><%= row['subdirectory'] %></span>
+			</td>
+		</tr>
+	<% end %>
+<% end %>

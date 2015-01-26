@@ -1,0 +1,90 @@
+<script type='text/javascript'>
+$(function () {
+	var series = new Array();
+    var categories = new Array();
+    categories = $("#categories").val().split(',');
+    for (var i in categories){
+        categories[i] = categories[i].toString() +'-'+(parseInt(categories[i])+1).toString();
+    }
+
+    var series_tmp = $("#series").val().split(' , ')
+    var colors = '#7cb5ec,#434348,#90ed7d,#f7a35c,#8085e9,#f15c80,#e4d354,#8085e8,#8d4653,#91e8e1,#CA8D48,#834D66,#3B5225,#CB1CCF,#0B413A'.split(',')
+    for (var i in series_tmp) {
+        series.push(JSON.parse(series_tmp[i]));
+    }
+	
+    $('#executed-statements-graph').highcharts({
+        credits: false,
+        chart: {
+            type: 'column'
+        },
+        colors:colors,
+        title: {
+            text: 'Errors count per day for last ' + $('#days-param').val() + ' days'
+        },
+        xAxis: {
+            categories: categories,
+            title: {text: 'Hours'}
+        },
+        yAxis: {
+            min: 0,
+            title: {text: 'Errors'},
+            stackLabels: {
+                enabled: true,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                }
+            },
+            labels: {
+                formatter: function(){
+                    return Highcharts.numberFormat(this.value,0);
+                }
+            }
+        },
+        tooltip: {
+            formatter: function() {
+                var s = '<span style="font-size:10px">'+this.x+' hours</span><table>';
+                var chart = this.points[0].series.chart; //get the chart object
+                var categories = chart.xAxis[0].categories; //get the categories array
+                var index = 0;
+                var total = 0;
+                while(this.x !== categories[index]){index++;} //compute the index of corr y value in each data arrays           
+                $.each(chart.series, function(i, serie) { //loop through series array
+                    s += '<tr><td style="color:'+colors[i]+';padding:0">'+ serie.name +': </td>' +
+                        '<td style="padding:0"> <b>'+serie.data[index].y+'</b></td></tr>'
+                        //series.data[index].y +;     //use index to get the y value
+                    total += serie.data[index].y
+                });           
+                s+= '<tr><td style="color:#000000;padding:0">TOTAL: </td><td style="padding:0"> <b>'+total+'</b></td></tr></table>'
+                return s;
+            },
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal'
+            }
+        },
+        series: series
+    });
+
+
+});
+</script>
+<% dayNumber = params["dayNumber"] == nil ? 7 : params["dayNumber"].to_i%>
+<% ret = procedure_select_all("exec SA_DBAMON.usp_get_errors_graph_data @p_days=#{dayNumber}")%>
+
+<input type="hidden" id='categories'  value="<%= ret[0]["categories"] %>"/>
+<input type="hidden" id='series'  value="<%= ret[0]["series"] %>"/>
+<input type="hidden" id='days-param' value = "<%= case params["dayNumber"] when nil then 7 else params["dayNumber"] end %>" />
+<div class="clearfix page-top">
+    <div class="col-lg-4 pull-left">
+        <label for="dayNumber" class="col-lg-2 control-label">Select days</label>
+        <div class="col-lg-10">
+            <%= select_tag 'dayNumber',options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14], dayNumber), :class=>"form-control database-select", :onchange => ("$('#mainForm').submit()") %>
+        </div>
+    </div>
+</div>
+<div id='executed-statements-graph' />

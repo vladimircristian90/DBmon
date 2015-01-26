@@ -1,0 +1,32 @@
+<% query = getRunningProcesses %>
+<% if query.length > 0 %>
+    <% colNames = query[0].keys  %>
+    <div id="running-processes" class="bs-example table-responsive">
+      <table class="running-processes table table-striped table-hover ">
+        <tbody><tr>
+            <% colNames.each do |col| %> 
+                  <th><%= col %></th>
+            <%end%>
+        </tr>
+        <% query.each do |row| %>
+            <tr>
+                <% colNames.each do |col| %> 
+                    
+                         <td style ="overflow: visible">
+                            <% if col == 'QueryText' || col == 'TEXT' %>
+                               <span class="sql-popover" style = 'width: 200px; height: 20px; display: block; overflow: hidden' data-content='<%= row["#{col}"].to_s %>' rel="popover" data-placement="left" data-toggle="popover"><%= row["#{col}"].to_s %></span>
+                            <% else %>
+                               <span><%= row["#{col}"].to_s %></span>
+                            <% end %>
+                            
+                        </td>
+                <%end%>
+            </tr>
+        <% end %>
+      </tbody></table>
+    </div>
+<% else %>
+    <div class="alert alert-info">
+        <strong>Oups!</strong> There are no running processes.
+    </div>
+<% end %>

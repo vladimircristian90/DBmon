@@ -1,0 +1,140 @@
+.table-responsive {
+width: 100% !important;
+margin-bottom: 15.75px !important;
+overflow-y: hidden !important;
+overflow-x: scroll !important;
+-ms-overflow-style: -ms-autohiding-scrollbar !important;
+border: 1px solid #dddddd !important;
+-webkit-overflow-scrolling: touch !important;
+}
+.navbar-toggle {
+	display: block !important;
+}
+.navbar-collapse {
+	height: 0 !important;
+}
+.table-responsive > .table {
+margin-bottom: 0 !important;
+}
+.table-responsive > .table > thead > tr > th,
+.table-responsive > .table > tbody > tr > th,
+.table-responsive > .table > tfoot > tr > th,
+.table-responsive > .table > thead > tr > td,
+.table-responsive > .table > tbody > tr > td,
+.table-responsive > .table > tfoot > tr > td {
+white-space: nowrap !important;
+}
+.table-responsive > .table-bordered {
+border: 0 !important;
+}
+.table-responsive > .table-bordered > thead > tr > th:first-child,
+.table-responsive > .table-bordered > tbody > tr > th:first-child,
+.table-responsive > .table-bordered > tfoot > tr > th:first-child,
+.table-responsive > .table-bordered > thead > tr > td:first-child,
+.table-responsive > .table-bordered > tbody > tr > td:first-child,
+.table-responsive > .table-bordered > tfoot > tr > td:first-child {
+border-left: 0 !important;
+}
+.table-responsive > .table-bordered > thead > tr > th:last-child,
+.table-responsive > .table-bordered > tbody > tr > th:last-child,
+.table-responsive > .table-bordered > tfoot > tr > th:last-child,
+.table-responsive > .table-bordered > thead > tr > td:last-child,
+.table-responsive > .table-bordered > tbody > tr > td:last-child,
+.table-responsive > .table-bordered > tfoot > tr > td:last-child {
+border-right: 0 !important;
+}
+.table-responsive > .table-bordered > tbody > tr:last-child > th,
+.table-responsive > .table-bordered > tfoot > tr:last-child > th,
+.table-responsive > .table-bordered > tbody > tr:last-child > td,
+.table-responsive > .table-bordered > tfoot > tr:last-child > td {
+border-bottom: 0 !important;
+}
+.navbar-nav .open .dropdown-menu {
+position: static !important;
+float: none !important;
+width: auto !important;
+margin-top: 0 !important;
+background-color: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+}
+.navbar-nav .open .dropdown-menu > li > a,
+.navbar-nav .open .dropdown-menu .dropdown-header {
+padding: 5px 15px 5px 25px !important;
+}
+.navbar-nav .open .dropdown-menu > li > a {
+line-height: 21px !important;
+}
+.navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-nav .open .dropdown-menu > li > a:focus {
+background-image: none !important;
+}
+.navbar-form .form-group {
+margin-bottom: 5px !important;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+color: #ffffff !important;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+color: #ffffff !important;
+background-color: #090909 !important;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+color: #ffffff !important;
+background-color: #090909 !important;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+color: #cccccc !important;
+background-color: transparent !important;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
+border-color: #0066cc !important;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+background-color: #0066cc !important;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+color: #ffffff !important;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+color: #ffffff !important;
+background-color: #0066cc !important;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+color: #ffffff !important;
+background-color: #0066cc !important;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+color: #ffffff !important;
+background-color: transparent !important;
+}
+.visible-xs {
+display: block !important;
+}
+table.visible-xs {
+display: table !important;
+}
+tr.visible-xs {
+display: table-row !important;
+}
+th.visible-xs,
+td.visible-xs {
+display: table-cell !important;
+}
+.hidden-xs,
+tr.hidden-xs,
+th.hidden-xs,
+td.hidden-xs {
+display: none !important;
+}
+

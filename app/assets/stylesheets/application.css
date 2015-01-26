@@ -1,0 +1,176 @@
+#rebuild-index-modal{
+	
+	min-width: 400px;
+	min-height: 200px;
+	display: none;
+}
+html[is-mobile="true"],html[is-mobile="false"] {
+	
+}
+
+#site-menu ul.navbar-nav > li > a > .caret {
+	visibility: hidden;
+}
+span.green:before {
+    color: green;
+}
+span.red:before {
+    color: red;
+}
+
+.backup-form-row {
+	float: none !important;
+	overflow: hidden;
+	min-width: 41.66666667%;
+}
+
+.note, .bak-btn, .bak-error-messages {
+	padding-left: 30px;
+}
+.bak-btn.actions {
+	margin-left: 0;
+}
+.bak-error-messages {
+	display: none;
+}
+.directory-tree-wrapper {
+	position: relative;
+}
+.table-responsive {
+	font-size: 12px;
+}
+body {
+	font-size: 14px;
+}
+h3, .h3 {
+	font-size: 24px;
+}
+.form-control {
+	height: 39px;
+	font-size: 15px;
+	padding: 5px 18px;
+}
+.navbar-nav > li > a {
+	padding-top: 11px;
+	padding-bottom: 13px;
+}
+#site-menu {
+	min-height: 46px;
+	margin-top: 20px;
+	border: 0;
+}
+#site-menu > div, #site-menu > div > ul {
+	border: 0;
+}
+#site-menu > div > ul {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.navbar-collapse {
+	max-height: 100%;
+}
+.navbar-toggle {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.new-folder .folder {
+	background-color: #9EBBEB;
+}
+.datepicker, .sql-popover {
+	cursor: pointer;
+}
+.input-group-addon, .input-group-btn, .input-group .form-control
+{
+	display: auto !important;
+}
+.container {
+	max-width: 1350px;
+    padding: 0 20px;
+    width: auto !important;
+    min-height: 500px;
+}
+.bak-error-messages {
+	color: red;
+}
+.modal-body .table-hover > tbody > tr:hover > td, .modal-body .table-hover > tbody > tr:hover > th {
+	background: #d0d0d0;
+}
+.popover {
+	width: 400px;
+	max-width: 400px;
+}
+#banner > .lead {
+	font-size: 17px;
+}
+.table-responsive{
+	border: 1px solid #dddddd;
+	border-radius: 5px;
+	border-top: 0px;
+    margin-bottom: 15.75px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+}
+.table-responsive > table {
+	margin-bottom: 0px;
+	cursor: default;
+}
+.page-top {
+	margin-bottom: 5px;
+}
+.page-top > h3 {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.page-top > div, .page-top > div > div {
+	padding: 0px;
+}
+.page-top > div {
+	width: auto !important;
+}
+.page-top > div > label {
+	float: left !important;
+	width: 75px !important;
+	padding: 0px;
+}
+.page-top > div > div {
+	float: right;
+	width: 150px;
+	padding: 0px;
+}
+label.select-database {
+	float:left  !important;
+}
+div.select-database {
+	float:right !important;
+}
+#banner > p.lead {
+	margin-bottom: 0px;
+}
+.page-header {
+	margin-top: 21px;
+	margin-bottom: 14px;
+}
+.refresh-processes {
+	padding: 0px;
+	width: auto !important;
+}
+.popover.left .arrow {
+	right: -10px;
+}
+.actions {
+	margin-left:10px;
+}
+.modal-dialog {
+	float: none !important;
+	padding: auto;
+	width: -moz-fit-content !important;
+	width: -webkit-fit-content !important;
+}
+.popover-content {
+	text-overflow: ellipsis;
+	overflow: auto;
+}
+.db-select-wrap {
+	padding: 0;
+}
